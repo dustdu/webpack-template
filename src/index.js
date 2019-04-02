@@ -1,5 +1,5 @@
 import _ from 'lodash'
-// import './css/index.css'
+import './css/index.css'
 // import logo from './assets/img/logo.png';
 import printMe from './print.js';
 
@@ -23,3 +23,10 @@ function component() {
 }
 
 document.body.appendChild(component());
+
+if (module.hot) {
+    module.hot.accept('./print.js', function() {
+      console.log('Accepting the updated printMe module!');
+      printMe();
+   })
+ }
