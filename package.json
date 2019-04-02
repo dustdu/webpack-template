@@ -4,6 +4,7 @@
   "description": "学信投FA网站",
   "private": true,
   "scripts": {
+    "build": "npx webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,5 +13,8 @@
   "devDependencies": {
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
   }
 }
