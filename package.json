@@ -1,0 +1,16 @@
+{
+  "name": "xuexintoufa-websit",
+  "version": "0.1.0",
+  "description": "学信投FA网站",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}
