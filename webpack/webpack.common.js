@@ -2,36 +2,43 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const WebpackManifestPlugin = require('webpack-manifest-plugin')
-const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
   entry: {
     app: './src/index.js'
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname,'dist')
   },
-  // 生成 source map。生产环境不需要
-  // devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-    hot: true
- },
- mode: "production",
+//  mode: "production",
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management'
+      title: '学信投FA'
     }),
     new CleanWebpackPlugin(),
-    new WebpackManifestPlugin(),
-    // 热更新
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new WebpackManifestPlugin()
   ],
   module: {
     rules: [
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+        options: {
+          fix:true,
+          emitWarning:true,
+          emitError:true,
+          // eslint options (if necessary)
+        }
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.css$/,
         use: [
@@ -61,5 +68,8 @@ module.exports = {
                  ]
                }
     ]
-  }
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
+  },
 }
